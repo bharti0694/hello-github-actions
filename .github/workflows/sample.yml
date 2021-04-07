@@ -5,7 +5,7 @@ on:
 
 jobs:
   preparation:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
 
     steps:
     - name: create build version
@@ -19,7 +19,7 @@ jobs:
         path: build_version.txt
 
   jpdintra:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     needs: preparation
 
     steps:
@@ -73,7 +73,7 @@ jobs:
 
 
   wagner:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     needs: preparation
 
     steps:
@@ -130,7 +130,7 @@ jobs:
 
 
   deploy-develenv:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     needs: [ jpdintra, wagner ]
 
     steps:
@@ -168,7 +168,7 @@ jobs:
         sleep 60
         rake -f Rakefile-gha DevelenvNightly:Info:GetPodDeploymentLogs[wagner]
   smoke-tests:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     needs: deploy-develenv
 
     steps:
